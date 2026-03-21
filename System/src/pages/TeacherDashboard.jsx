@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import Navbar from '../components/Navbar';
 import '../styles/Dashboard.css';
 
 export default function TeacherDashboard() {
@@ -19,19 +20,51 @@ export default function TeacherDashboard() {
     { id: 3, name: 'Statistics', students: 28, schedule: 'MWF 1:00 PM' }
   ]);
 
+  const [personalInfo, setPersonalInfo] = useState({
+    fullName: user?.fullName || '',
+    email: user?.email || '',
+    phone: '',
+    address: '',
+    dateOfBirth: '',
+    gender: '',
+    department: '',
+    qualifications: '',
+    experience: '',
+    specialization: '',
+    bio: ''
+  });
+
+  const handlePersonalInfoChange = (e) => {
+    const { name, value } = e.target;
+    setPersonalInfo(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleSavePersonalInfo = () => {
+    alert('Personal information saved successfully!');
+    console.log('Personal info saved:', personalInfo);
+  };
+
   const handleLogout = () => {
     logout();
     navigate('/auth');
   };
 
   return (
-    <div className="dashboard-container">
+    <>
+      <Navbar />
+      <div className="dashboard-container">
       {/* Sidebar Navigation */}
       <aside className="dashboard-sidebar">
         <div className="sidebar-header">
-          <h2>VIDHYALAYA</h2>
+          <div className="sidebar-welcome">
+            <p className="sidebar-welcome-label">Welcome Back</p>
+            <p className="sidebar-welcome-text">{user?.fullName}</p>
+          </div>
           <div className="user-info">
-            <div className="user-avatar">👨‍🏫</div>
+            <div className="user-avatar">T</div>
             <div>
               <p className="user-name">{user?.fullName}</p>
               <p className="user-role">Teacher</p>
@@ -44,59 +77,53 @@ export default function TeacherDashboard() {
             className={`nav-item ${activeSection === 'overview' ? 'active' : ''}`}
             onClick={() => setActiveSection('overview')}
           >
-            📊 Dashboard Overview
+            Dashboard
           </button>
           <button
             className={`nav-item ${activeSection === 'classes' ? 'active' : ''}`}
             onClick={() => setActiveSection('classes')}
           >
-            📚 My Classes
+            My Classes
           </button>
           <button
             className={`nav-item ${activeSection === 'students' ? 'active' : ''}`}
             onClick={() => setActiveSection('students')}
           >
-            👥 Students
+            Students
           </button>
           <button
             className={`nav-item ${activeSection === 'assignments' ? 'active' : ''}`}
             onClick={() => setActiveSection('assignments')}
           >
-            ✏️ Create Assignment
+            Create Assignment
           </button>
           <button
             className={`nav-item ${activeSection === 'attendance' ? 'active' : ''}`}
             onClick={() => setActiveSection('attendance')}
           >
-            📋 Attendance
+            Attendance
           </button>
           <button
             className={`nav-item ${activeSection === 'grading' ? 'active' : ''}`}
             onClick={() => setActiveSection('grading')}
           >
-            📝 Grading
+            Grading
+          </button>
+          <button
+            className={`nav-item ${activeSection === 'personalinfo' ? 'active' : ''}`}
+            onClick={() => setActiveSection('personalinfo')}
+          >
+            Personal Information
           </button>
         </nav>
 
         <button className="logout-btn" onClick={handleLogout}>
-          🚪 Logout
+          Logout
         </button>
       </aside>
 
       {/* Main Content */}
       <main className="dashboard-main">
-        <header className="dashboard-header">
-          <h1>Welcome, {user?.fullName}!</h1>
-          <p className="header-subtitle">
-            {new Date().toLocaleDateString('en-US', {
-              weekday: 'long',
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
-            })}
-          </p>
-        </header>
-
         {/* Dashboard Overview */}
         {activeSection === 'overview' && (
           <section className="dashboard-section">
@@ -106,28 +133,28 @@ export default function TeacherDashboard() {
                 <div className="stat-icon">📚</div>
                 <div className="stat-content">
                   <h3>{classes.length}</h3>
-                  <p>Classes Teaching</p>
+                  <p>Classes</p>
                 </div>
               </div>
               <div className="stat-card">
                 <div className="stat-icon">👥</div>
                 <div className="stat-content">
                   <h3>{students.length}</h3>
-                  <p>Students</p>
+                  <p>Total Students</p>
                 </div>
               </div>
               <div className="stat-card">
                 <div className="stat-icon">📝</div>
                 <div className="stat-content">
                   <h3>12</h3>
-                  <p>Assignments Created</p>
+                  <p>Assignments</p>
                 </div>
               </div>
               <div className="stat-card">
                 <div className="stat-icon">✅</div>
                 <div className="stat-content">
                   <h3>8</h3>
-                  <p>Pending Grades</p>
+                  <p>Pending</p>
                 </div>
               </div>
             </div>
@@ -138,22 +165,64 @@ export default function TeacherDashboard() {
                 <div className="activity-item clickable">
                   <span className="activity-icon">➕</span>
                   <div>
-                    <p className="activity-title">Create New Assignment</p>
-                    <p className="activity-time">Post assignment for your classes</p>
+                    <p className="activity-title">Create Assignment</p>
+                    <p className="activity-time">Post new assignment for classes</p>
                   </div>
                 </div>
                 <div className="activity-item clickable">
                   <span className="activity-icon">📊</span>
                   <div>
-                    <p className="activity-title">View Student Performance</p>
-                    <p className="activity-time">Check grades and progress</p>
+                    <p className="activity-title">Student Performance</p>
+                    <p className="activity-time">Review grades and progress</p>
                   </div>
                 </div>
                 <div className="activity-item clickable">
                   <span className="activity-icon">📋</span>
                   <div>
                     <p className="activity-title">Mark Attendance</p>
-                    <p className="activity-time">Record student attendance</p>
+                    <p className="activity-time">Record attendance for students</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="timeline-section">
+              <h3>Activity Timeline</h3>
+              <div className="timeline-container">
+                <div className="timeline-item">
+                  <div className="timeline-dot">📝</div>
+                  <div className="timeline-content">
+                    <p className="timeline-title">Assignment Graded</p>
+                    <p className="timeline-description">You have graded 5 submissions from Mathematics Class 101</p>
+                    <span className="timeline-type grade">Grade</span>
+                    <span className="timeline-time">Today at 3:15 PM</span>
+                  </div>
+                </div>
+                <div className="timeline-item">
+                  <div className="timeline-dot">📢</div>
+                  <div className="timeline-content">
+                    <p className="timeline-title">Announcement Posted</p>
+                    <p className="timeline-description">New announcement about mid-term exams posted to all classes</p>
+                    <span className="timeline-type announcement">Announcement</span>
+                    <span className="timeline-time">Yesterday at 10:00 AM</span>
+                  </div>
+                </div>
+                <div className="timeline-item">
+                  <div className="timeline-dot">✅</div>
+                  <div className="timeline-content">
+                    <p className="timeline-title">Attendance Recorded</p>
+                    <p className="timeline-description">Attendance for Tuesday's Advanced Calculus class has been recorded</p>
+                    <span className="timeline-type submission">Submission</span>
+                    <span className="timeline-time">2 days ago</span>
+                  </div>
+                </div>
+                <div className="timeline-item">
+                  <div className="timeline-dot">👥</div>
+                  <div className="timeline-content">
+                    <p className="timeline-title">Class Material Updated</p>
+                    <p className="timeline-description">Uploaded new lecture slides for Statistics - Chapter 4</p>
+                    <span className="timeline-type assignment">Course</span>
+                    <span className="timeline-time">1 week ago</span>
                   </div>
                 </div>
               </div>
@@ -296,6 +365,161 @@ export default function TeacherDashboard() {
           </section>
         )}
 
+        {/* Personal Information Section */}
+        {activeSection === 'personalinfo' && (
+          <section className="dashboard-section">
+            <h2>Personal Information</h2>
+            <form className="personal-info-form">
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="fullName">Full Name</label>
+                  <input
+                    id="fullName"
+                    type="text"
+                    name="fullName"
+                    value={personalInfo.fullName}
+                    onChange={handlePersonalInfoChange}
+                    placeholder="Enter your full name"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={personalInfo.email}
+                    onChange={handlePersonalInfoChange}
+                    placeholder="Enter your email"
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="phone">Phone Number</label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    value={personalInfo.phone}
+                    onChange={handlePersonalInfoChange}
+                    placeholder="Enter your phone number"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="gender">Gender</label>
+                  <select
+                    id="gender"
+                    name="gender"
+                    value={personalInfo.gender}
+                    onChange={handlePersonalInfoChange}
+                  >
+                    <option value="">Select gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="dateOfBirth">Date of Birth</label>
+                  <input
+                    id="dateOfBirth"
+                    type="date"
+                    name="dateOfBirth"
+                    value={personalInfo.dateOfBirth}
+                    onChange={handlePersonalInfoChange}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="address">Address</label>
+                  <input
+                    id="address"
+                    type="text"
+                    name="address"
+                    value={personalInfo.address}
+                    onChange={handlePersonalInfoChange}
+                    placeholder="Enter your address"
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="department">Department</label>
+                  <input
+                    id="department"
+                    type="text"
+                    name="department"
+                    value={personalInfo.department}
+                    onChange={handlePersonalInfoChange}
+                    placeholder="Enter your department"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="specialization">Specialization</label>
+                  <input
+                    id="specialization"
+                    type="text"
+                    name="specialization"
+                    value={personalInfo.specialization}
+                    onChange={handlePersonalInfoChange}
+                    placeholder="Enter your specialization"
+                  />
+                </div>
+              </div>
+
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="qualifications">Qualifications</label>
+                  <input
+                    id="qualifications"
+                    type="text"
+                    name="qualifications"
+                    value={personalInfo.qualifications}
+                    onChange={handlePersonalInfoChange}
+                    placeholder="E.g., B.Tech, M.Sc, PhD"
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="experience">Years of Experience</label>
+                  <input
+                    id="experience"
+                    type="number"
+                    name="experience"
+                    value={personalInfo.experience}
+                    onChange={handlePersonalInfoChange}
+                    placeholder="Enter years of experience"
+                  />
+                </div>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="bio">Bio/About Yourself</label>
+                <textarea
+                  id="bio"
+                  name="bio"
+                  value={personalInfo.bio}
+                  onChange={handlePersonalInfoChange}
+                  placeholder="Tell us about yourself"
+                  rows="5"
+                ></textarea>
+              </div>
+
+              <button
+                type="button"
+                className="auth-btn"
+                onClick={handleSavePersonalInfo}
+              >
+                Save Personal Information
+              </button>
+            </form>
+          </section>
+        )}
+
         {/* Grading Section */}
         {activeSection === 'grading' && (
           <section className="dashboard-section">
@@ -351,6 +575,7 @@ export default function TeacherDashboard() {
           </section>
         )}
       </main>
-    </div>
+      </div>
+    </>
   );
 }

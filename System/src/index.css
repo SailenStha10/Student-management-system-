@@ -4,34 +4,61 @@
   box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700&display=swap');
+
 :root {
-  --primary: #667eea;
-  --primary-dark: #764ba2;
-  --secondary: #f093fb;
-  --text: #333333;
-  --text-light: #666666;
-  --text-lighter: #999999;
+  /* Primary Colors - Dark Blue Theme */
+  --primary: #0f2855;
+  --primary-light: #1a3a52;
+  --primary-accent: #2c5aa4;
+  --primary-gradient: linear-gradient(135deg, #0f2855 0%, #1a3a52 50%, #2c5aa4 100%);
+  
+  /* Accent Colors */
+  --accent-blue: #4a90e2;
+  --accent-teal: #17a2b8;
+  --accent-purple: #7c3aed;
+  
+  /* Status Colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #3b82f6;
+  
+  /* Text Colors */
+  --text: #1f2937;
+  --text-light: #4b5563;
+  --text-lighter: #9ca3af;
+  --text-inverse: #ffffff;
+  
+  /* Background Colors */
   --bg: #ffffff;
-  --bg-light: #f5f7fa;
-  --bg-lighter: #f0f2f5;
-  --border: #e0e0e0;
-  --success: #27ae60;
-  --warning: #f39c12;
-  --danger: #e74c3c;
-  --info: #3498db;
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
-  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.15);
-  --shadow-xl: 0 10px 40px rgba(0, 0, 0, 0.2);
+  --bg-light: #f8f9fa;
+  --bg-lighter: #f3f4f6;
+  --bg-dark: #0f2855;
+  
+  /* Borders */
+  --border: #e5e7eb;
+  --border-dark: rgba(15, 40, 85, 0.1);
+  
+  /* Shadows - Enhanced */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 2px 8px rgba(15, 40, 85, 0.08);
+  --shadow-md: 0 4px 16px rgba(15, 40, 85, 0.12);
+  --shadow-lg: 0 8px 32px rgba(15, 40, 85, 0.15);
+  --shadow-xl: 0 12px 48px rgba(15, 40, 85, 0.2);
+  --shadow-2xl: 0 20px 64px rgba(15, 40, 85, 0.25);
+  --shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+  
+  /* Transitions */
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  /* Typography */
+  --sans: 'Sora', 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --mono: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier', monospace;
 
-  --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  --mono: 'SFMono-Regular', 'Consolas', 'Liberation Mono', 'Menlo', 'Courier',
-    monospace;
-
-  font: 16px/1.5 var(--sans);
+  font: 16px/1.6 var(--sans);
   color-scheme: light;
   color: var(--text);
 }

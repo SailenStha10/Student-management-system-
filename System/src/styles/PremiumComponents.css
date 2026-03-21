@@ -1,0 +1,590 @@
+/* ================================================
+   PREMIUM UI COMPONENTS
+   ================================================ */
+
+/* ================================================
+   DATA TABLE ENHANCEMENTS
+   ================================================ */
+
+.premium-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(15, 40, 85, 0.08);
+}
+
+.premium-table thead {
+  background: linear-gradient(135deg, #0f2855 0%, #1a3a52 100%);
+  color: white;
+}
+
+.premium-table thead th {
+  padding: 16px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  border: none;
+  text-transform: uppercase;
+}
+
+.premium-table tbody tr {
+  border-bottom: 1px solid rgba(15, 40, 85, 0.1);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.premium-table tbody tr:nth-child(odd) {
+  background: rgba(15, 40, 85, 0.02);
+}
+
+.premium-table tbody tr:hover {
+  background: linear-gradient(90deg, rgba(15, 40, 85, 0.1) 0%, transparent 100%);
+  transform: scale(1.01);
+  box-shadow: inset 0 0 10px rgba(15, 40, 85, 0.1);
+}
+
+.premium-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.premium-table td {
+  padding: 14px 16px;
+  color: var(--text);
+  font-size: 13px;
+}
+
+.premium-table tbody tr:hover td {
+  color: var(--primary);
+}
+
+/* ================================================
+   PREMIUM CARDS WITH HOVER EFFECTS
+   ================================================ */
+
+.premium-card {
+  background: white;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(15, 40, 85, 0.1);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #0f2855 0%, #2c5aa4 100%);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.premium-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(15, 40, 85, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.premium-card:hover {
+  transform: translateY(-12px) translateX(-2px);
+  box-shadow: 0 20px 48px rgba(15, 40, 85, 0.2);
+  border-color: var(--primary);
+}
+
+.premium-card:hover::before {
+  transform: scaleX(1);
+}
+
+.premium-card:hover::after {
+  opacity: 1;
+}
+
+.premium-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(15, 40, 85, 0.1);
+}
+
+.premium-card-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+
+.premium-card-subtitle {
+  font-size: 13px;
+  color: var(--text-lighter);
+  margin: 0;
+  margin-top: 4px;
+}
+
+.premium-card-content {
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ================================================
+   PREMIUM PROGRESS COMPONENTS
+   ================================================ */
+
+.premium-progress {
+  width: 100%;
+  height: 10px;
+  background: rgba(15, 40, 85, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.premium-progress-fill {
+  height: 100%;
+  background: var(--primary-gradient);
+  border-radius: 10px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  box-shadow: 0 0 12px rgba(15, 40, 85, 0.3);
+}
+
+.premium-progress-fill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmerAnimation 2s infinite;
+}
+
+@keyframes shimmerAnimation {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.premium-progress-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.premium-progress-label span:first-child {
+  color: var(--text);
+}
+
+.premium-progress-label span:last-child {
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ================================================
+   PREMIUM STATS BOXES
+   ================================================ */
+
+.premium-stat-box {
+  background: linear-gradient(135deg, #0f2855 0%, #1a3a52 50%, #2c5aa4 100%);
+  color: white;
+  padding: 28px;
+  border-radius: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(15, 40, 85, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-stat-box::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.premium-stat-box::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.15), transparent 70%);
+  animation: shimmerSlide 3s infinite;
+}
+
+@keyframes shimmerSlide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.premium-stat-box:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 16px 48px rgba(15, 40, 85, 0.3);
+}
+
+.premium-stat-box:hover::before {
+  opacity: 1;
+}
+
+.premium-stat-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.premium-stat-value {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+.premium-stat-label {
+  font-size: 13px;
+  opacity: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  position: relative;
+  z-index: 2;
+}
+
+.premium-stat-change {
+  font-size: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  z-index: 2;
+}
+
+.premium-stat-change.positive {
+  color: #86efac;
+}
+
+.premium-stat-change.negative {
+  color: #fca5a5;
+}
+
+/* ================================================
+   PREMIUM MODALS & OVERLAYS
+   ================================================ */
+
+.premium-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 40, 85, 0.4);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeInOverlay 0.3s ease-out;
+}
+
+@keyframes fadeInOverlay {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(8px);
+  }
+}
+
+.premium-modal {
+  background: white;
+  border-radius: 20px;
+  padding: 32px;
+  box-shadow: 0 20px 64px rgba(15, 40, 85, 0.3);
+  max-width: 500px;
+  width: 90%;
+  animation: slideInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(15, 40, 85, 0.1);
+}
+
+@keyframes slideInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.8) translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.premium-modal-header {
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid rgba(15, 40, 85, 0.1);
+}
+
+.premium-modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+
+.premium-modal-body {
+  margin-bottom: 24px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.premium-modal-footer {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+/* ================================================
+   PREMIUM ALERTS & NOTIFICATIONS
+   ================================================ */
+
+.premium-alert {
+  padding: 16px 20px;
+  border-radius: 12px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin-bottom: 16px;
+  animation: slideInLeft 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border-left: 4px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.premium-alert::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.3), transparent);
+  animation: shimmerSlide 3s infinite;
+}
+
+.premium-alert-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+
+.premium-alert-content {
+  flex: 1;
+  position: relative;
+  z-index: 2;
+}
+
+.premium-alert-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.premium-alert-message {
+  font-size: 13px;
+  opacity: 0.95;
+  line-height: 1.5;
+}
+
+.premium-alert.success {
+  background: linear-gradient(135deg, #dcfce7 0%, #f0fdf4 100%);
+  color: #15803d;
+  border-left-color: #10b981;
+}
+
+.premium-alert.warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fffbeb 100%);
+  color: #92400e;
+  border-left-color: #f59e0b;
+}
+
+.premium-alert.danger {
+  background: linear-gradient(135deg, #fee2e2 0%, #fef2f2 100%);
+  color: #7f1d1d;
+  border-left-color: #ef4444;
+}
+
+.premium-alert.info {
+  background: linear-gradient(135deg, #dbeafe 0%, #f0f9ff 100%);
+  color: #1e40af;
+  border-left-color: #3b82f6;
+}
+
+/* ================================================
+   PREMIUM DIVIDER & SEPARATORS
+   ================================================ */
+
+.premium-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(15, 40, 85, 0.2), transparent);
+  margin: 24px 0;
+}
+
+.premium-divider.vertical {
+  width: 1px;
+  height: auto;
+  margin: 0 24px;
+}
+
+/* ================================================
+   PREMIUM LOADING STATES
+   ================================================ */
+
+.premium-skeleton {
+  background: linear-gradient(90deg, rgba(15, 40, 85, 0.1) 25%, rgba(15, 40, 85, 0.06) 50%, rgba(15, 40, 85, 0.1) 75%);
+  background-size: 200% 100%;
+  animation: skeletonLoading 1.5s infinite;
+  border-radius: 8px;
+}
+
+@keyframes skeletonLoading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.premium-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(15, 40, 85, 0.1);
+  border-top: 4px solid var(--primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ================================================
+   PREMIUM TOOLTIPS
+   ================================================ */
+
+.premium-tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.premium-tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: var(--primary);
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+  padding: 8px 12px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -100px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(15, 40, 85, 0.2);
+}
+
+.premium-tooltip .tooltiptext::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--primary) transparent transparent transparent;
+}
+
+.premium-tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* ================================================
+   PREMIUM ANIMATIONS
+   ================================================ */
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}

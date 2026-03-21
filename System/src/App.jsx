@@ -5,6 +5,7 @@ import AuthPage from './pages/AuthPage';
 import StudentDashboard from './pages/StudentDashboard';
 import TeacherDashboard from './pages/TeacherDashboard';
 import './App.css';
+import './styles/PremiumComponents.css';
 
 function App() {
   return (
